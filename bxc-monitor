@@ -1,0 +1,18 @@
+#!/bin/sh
+BXC_NETWORK="/etc/storage/bxc/bxc-network"
+BXC_WORKER="/etc/storage/bxc/bxc-worker"
+while true;
+do
+	bxcnetwork=`ps | grep bxc-network | grep -v grep `
+	if	[ ! "$bxcnetwork" ];then
+		chmod +x $BXC_NETWORK && $BXC_NETWORK > /dev/null 2>&1 &
+	fi	
+
+	bxcworker=`ps | grep bxc-worker | grep -v grep ` 
+	if 	[ ! "$bxcworker" ];then
+		chmod +x $BXC_WORKER && $BXC_WORKER > /dev/null 2>&1 &
+	fi
+
+	sleep 30
+
+done
