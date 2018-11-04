@@ -2,8 +2,6 @@
 
 第一步：修改bxc.sh
 
-#填入自己的账号替换abc@abc.com 
-
 ```
 
 BXC_EMAIL="abc@abc.com"
