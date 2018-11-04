@@ -2,19 +2,19 @@
 # BxC-Node operation script from AM380 merlin firmware (by sean.ley (ley@bonuscloud.io)) & Betterman's K2 padavan
 
 # load path environment in dbus databse
-BXC_MONITOR="/etc/storage/bxc/bxc-monitor"
-BXC_NETWORK="/etc/storage/bxc/bxc-network"
-BXC_WORKER="/etc/storage/bxc/bxc-worker"
-BXC_SSL_DIR="/etc/storage/bcloud"
-BXC_SSL_RES="/etc/storage/bcloud/curl.res"
-BXC_SSL_KEY="/etc/storage/bcloud/client.key"
-BXC_SSL_CRT="/etc/storage/bcloud/client.crt"
-BXC_SSL_CA="/etc/storage/bcloud/ca.crt"
+BXC_MONITOR="/opt/bxc/bxc-monitor"
+BXC_NETWORK="/opt/bxc/bxc-network"
+BXC_WORKER="/opt/bxc/bxc-worker"
+BXC_SSL_DIR="/opt/bcloud"
+BXC_SSL_RES="/opt/bcloud/curl.res"
+BXC_SSL_KEY="/opt/bcloud/client.key"
+BXC_SSL_CRT="/opt/bcloud/client.crt"
+BXC_SSL_CA="/opt/bcloud/ca.crt"
 BXC_BOUND_URL="https://console.bonuscloud.io/api/web/devices/bind/"
 BXC_REPORT_URL="https://bxcvenus.com/idb/dev"
-BXC_INFO_LOC="/etc/storage/bcloud/info"
-BXC_JSON="/etc/storage/bxc/bxc-json.sh"
-BXC_CONF="/etc/storage/bxc/bxc.config"
+BXC_INFO_LOC="/opt/bcloud/info"
+BXC_JSON="/opt/bxc/bxc-json.sh"
+BXC_CONF="/opt/bxc/bxc.config"
 BXC_MAC=$(cat /sys/class/net/eth2.2/address)
 #填入自己的账号替换abc@abc.com
 BXC_EMAIL="abc@abc.com"
@@ -35,7 +35,7 @@ ipv6_enable() {
 
 start_bxc(){
 
-	if [ ! -x /etc/storage/bcloud ];then
+	if [ ! -x /opt/bcloud ];then
 		bound_bxc
 	fi
 	echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6
@@ -114,7 +114,7 @@ bound_bxc(){
 			logger -t "bound failed with server response: $fail_detail"  > /dev/null 2>&1 &
 		
 		else
-			logger -t "Server response code: $curl_code, please check /etc/storage/bcloud/curl.res" > /dev/null 2>&1 &
+			logger -t "Server response code: $curl_code, please check /opt/bcloud/curl.res" > /dev/null 2>&1 &
 		
 		fi
 		rm -rf  $BXC_SSL_DIR
@@ -122,8 +122,8 @@ bound_bxc(){
 	fi
 
 	# 备份绑定信息（邀请码 + 证书文件）
-	echo $BXC_EMAIL > /etc/storage/bcloud/email
-	echo $BXC_BCODE > /etc/storage/bcloud/bcode
+	echo $BXC_EMAIL > /opt/bcloud/email
+	echo $BXC_BCODE > /opt/bcloud/bcode
 
 	# 保存配置文件
 	/sbin/mtd_storage.sh save
