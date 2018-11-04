@@ -1,6 +1,6 @@
 # Bonuscloud-script
 
-Here for LOW STORAGE DEVICE: < https://github.com/NikomimiSaya/Bonuscloud-script/tree/low-storage >
+Here for LOW STORAGE DEVICE: https://github.com/NikomimiSaya/Bonuscloud-script/tree/low-storage
 
 第一步：修改bxc.sh
 
