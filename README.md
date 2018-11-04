@@ -21,7 +21,7 @@ chmod -R 777 /etc/storage/bxc
 /etc/storage/bxc/bxc.sh start
 
 ```
-第四步：脚本中添加语句
+第四步：开机脚本中添加语句
 
 ```
 
