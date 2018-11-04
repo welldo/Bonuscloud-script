@@ -10,7 +10,7 @@ BXC_BCODE="xxxxxxx"
 ```
 第二步：上传至/etc/storage/bxc
 
-第三步：
+第三步：初始化
 
 ```
 
